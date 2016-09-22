@@ -37,7 +37,7 @@ def chinês(msg):
 # anagrama('asa', 'assa') -> False
 # é possível uma solução com uma única linha
 def anagrama(s1, s2):
-  return True if s1 == s2[::-1] else False
+  return True if sorted(s1) == sorted(s2) else False
 
 # loja_tinta
 # suponha que uma lata pinte 54 metros quadrados
@@ -197,14 +197,23 @@ def fila_tijolos(n_peq, n_gra, meta):
 # palavra = 'ana'
 # busca ('ana e mariana gostam de banana', 'ana') == 4
 def busca(frase, palavra):
-  return
+  count_ocorr = 0
+  for i in range(len(frase)):
+    if frase[i:len(palavra)+i] == palavra:
+      count_ocorr += 1
+  return count_ocorr
 
 # zeros finais
 # Verifique quantos zeros há no final de um número inteiro positivo
 # Exemplo: 10010 tem 1 zero no fim e 908007000 possui três
 # Dica: talvez converter para string torne o exercício mais fácil
 def zf(n):
-  pass
+  a = str(n)
+  count_zero = len(a)
+  while count_zero >= 0:
+    count_zero -= 1
+    if a[count_zero] != '0':
+      return len(a) - count_zero - 1
 
 # conta 2
 # Verifique quantas vezes o dígito 2 aparece entre 0 e n-1
@@ -223,7 +232,7 @@ def inip2(n):
   for i in range(10000):
     a = str(2**i)
     if a.startswith(str(n)):
-      return int(i)
+      return i
 
 # O código abaixo avalia suas questões, favor não alterar ou decodificar
 from base64 import b64decode
